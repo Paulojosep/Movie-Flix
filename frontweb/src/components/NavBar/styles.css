@@ -1,0 +1,12 @@
+.main-nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: #ffc700;
+}
+
+.nav-title h1 {
+  width: 112px;
+  height: 33px;
+  padding: 18px;
+}
