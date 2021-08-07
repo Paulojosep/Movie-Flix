@@ -9,6 +9,8 @@ import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,7 +29,7 @@ public class GenreService {
 	@Transactional(readOnly = true)
 	public List<GenreDTO> findAll() {
 		List<Genre> list = repository.findAll();
-		return list.stream().map(x -> new GenreDTO()).collect(Collectors.toList());
+		return list.stream().map(x -> new GenreDTO(x)).collect(Collectors.toList());
 	}
 
 	@Transactional(readOnly = true)
@@ -35,6 +37,11 @@ public class GenreService {
 		Optional<Genre> obj = repository.findById(id);
 		Genre entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
 		return new GenreDTO(entity);
+	}
+
+	public Page<GenreDTO> findAllPagend(Long genreId, PageRequest pageRequest) {
+		Page<Genre> list = repository.findAllGenreMoviesByTitle(pageRequest);
+		return list.map(x -> new GenreDTO(x));
 	}
 
 	@Transactional
