@@ -1,17 +1,23 @@
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import {Route, Router, Switch, Redirect } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Home from "./pages/Auth";
+import Catalog from "./pages/Catalog";
+import history from "./util/history";
 
 const Routes = () => {
     return (
-        <BrowserRouter>
+        <Router history={history}>
             <NavBar />
             <Switch>
-                <Route path="/" exact>
+                <Redirect from="/" to="/auth/login" exact />
+                <Route path="/auth">
                     <Home />
                 </Route>
+                <Route path="/movies" exact>
+                    <Catalog />
+                </Route>
             </Switch>
-        </BrowserRouter>
+        </Router>
     );
 }
 
