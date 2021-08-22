@@ -3,9 +3,11 @@
   flex-direction: column;
   justify-content: space-around;
   background-color: #ffc700;
+  height: 70px;
 }
 
 .nav-title h1 {
+  font-size: 24px;
   width: 112px;
   height: 33px;
   padding: 18px;

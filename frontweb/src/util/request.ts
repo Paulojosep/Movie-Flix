@@ -47,6 +47,15 @@ export const requestBackend = (config: AxiosRequestConfig) => {
   return axios({ ...config, baseURL: BASE_URL, headers });
 };
 
+//private
+export const makePrivateRequest = (params: AxiosRequestConfig) => {
+  const headers = {
+    Authorization: 'Bearer ' + getAuthData().access_token,
+  }
+
+  return requestBackend({...params, headers})
+}
+
 axios.interceptors.request.use(
   function (config) {
     return config;
