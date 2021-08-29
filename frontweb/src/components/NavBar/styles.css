@@ -11,4 +11,25 @@
   width: 112px;
   height: 33px;
   padding: 18px;
+  padding-right: 250px;
+}
+
+.btn-out {
+  justify-content: flex-start;
+  width: 103px;
+  height: 30px;  
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background-color: #ffc700;
+}
+
+.sair {
+  margin-left: 1069px;
+}
+
+@media(min-width: 800px) {
+  .btn-out {
+    margin-left: 40px;
+  }
 }
