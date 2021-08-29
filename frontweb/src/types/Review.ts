@@ -1,9 +1,19 @@
-import { User } from './User'
-
 export type Review = {
-    id: number;
-    text: string;
-    userId: number,
-    movieId: number,
-    user: User;
-}
+  id: number;
+  text: string;
+  userId: number;
+  movieId: number;
+  user: User[];
+};
+
+export type User = {
+  id: number;
+  name: string;
+  email: string;
+  roles: Roles[];
+};
+
+export type Roles = {
+  id: number;
+  authority: string;
+};

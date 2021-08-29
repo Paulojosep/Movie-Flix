@@ -9,5 +9,18 @@ export type Movie = {
     synopsis: string;
     genreId: number;
     genre: Genre;
-    reviews: [];
+    reviews: Review[];
 }
+
+export type Review = {
+    id: number;
+    text: string;
+    movieId: number;
+    userId: number;
+    user: User;
+  };
+
+export type User = {
+    id: number;
+    name: string;
+  };

@@ -12,7 +12,7 @@ public class ReviewDTO implements Serializable{
 
 	private Long id;
 
-	@NotBlank(message = "Campo requerido")
+	//@NotBlank(message = "Campo requerido")
 	private String text;
 
 	private Long userId;
