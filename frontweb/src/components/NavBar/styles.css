@@ -1,35 +1,22 @@
-.main-nav {
+.navbar-container {
+  color: #000000;
+  background-color: var(--primary-color);
+  padding: 15px;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  background-color: #ffc700;
-  height: 70px;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.nav-title h1 {
-  font-size: 24px;
-  width: 112px;
-  height: 33px;
-  padding: 18px;
-  padding-right: 250px;
+.navbar-container h2 {
+  color: #000000;
+  font-size: 1.5em;
 }
 
-.btn-out {
-  justify-content: flex-start;
-  width: 103px;
-  height: 30px;  
+.navbar-login a {
+  padding: 2px 30px;
+  color: #000000;
+  font-weight: 700;
   border: 1px solid #000000;
   box-sizing: border-box;
   border-radius: 10px;
-  background-color: #ffc700;
-}
-
-.sair {
-  margin-left: 1069px;
-}
-
-@media(min-width: 800px) {
-  .btn-out {
-    margin-left: 40px;
-  }
 }

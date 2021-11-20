@@ -28,18 +28,14 @@ const Catalog = () => {
   }, [getMovies]);
 
   return (
-    <div className="container my-4 catalog-container">
-      <div className="row catalog-title-container">
-        <h1>Tela listagem de filmes</h1>
-      </div>
-
-      <div className="row catalog-movies">
+    <div className="catalog-container">
+      <div className="row">
         {isLoading ? (
           <MovieCardLoader />
         ) : (
           page?.content.map((movie) => (
-            <div className="col ">
-              <Link to={`/movies/${movie.id}`} key={movie.id}>
+            <div className="col-sm-6 col-lg-4 col-xl-3" key={movie.id}>
+              <Link to={`/movies/${movie.id}`}>
                 <MovieCard movie={movie} />
               </Link>
             </div>

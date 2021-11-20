@@ -4,9 +4,9 @@ import history from '../../util/history';
 import { getTokenData, isAuthenticated } from '../../util/auth';
 import { removeAuthData } from '../../util/storage';
 import './styles.css';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
-const NavBar = () => {
+const Navbar = () => {
   const { authContextData, setAuthContextData } = useContext(AuthContext);
 
   useEffect(() => {
@@ -22,42 +22,20 @@ const NavBar = () => {
     }
   }, [setAuthContextData]);
 
-  const handleLogoutClick = () => {
-    removeAuthData();
-    setAuthContextData({
-      authenticated: false,
-    });
-    history.replace('/');
-  };
-
-  const logout = () => {
-    handleLogoutClick()
-  }
-
   return (
-    <nav className="bg-primary main-nav row">
-      <div className="col-11">
-        <Link to="/" className="nav-logo-text">
-          <h4>MovieFlix</h4>
-        </Link>
-      </div>
-      <div className="col-1">
-        <div className="user-info-dnone text-right sair">
-          {authContextData && (
-            <>
-              <button
-                type="button"
-                className="btn-out btn-outline-secondary btn"
-                onClick={logout}
-              >
-                Sair
-              </button>
-            </>
+    <div className="navbar-container">
+      <NavLink to="/" exact>
+        <h2>MovieFlix</h2>
+      </NavLink>
+      <button className="navbar-login">
+        { authContextData.authenticated ? (
+            <span></span>
+          ) : (
+            <a href="/" onClick={removeAuthData}>SAIR</a>
           )}
-        </div>
-      </div>
-    </nav>
+      </button>
+    </div>
   );
 };
 
-export default NavBar;
+export default Navbar;
