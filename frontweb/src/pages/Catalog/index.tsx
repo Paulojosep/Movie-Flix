@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import MovieCard from '../../components/MovieCard';
+import Pagination from '../../components/Pagination';
 import { Genre } from '../../types/Genre';
 import { Movie } from '../../types/Movie';
 import { SpringPage } from '../../types/vendor/spring';
@@ -13,9 +14,13 @@ const Catalog = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [genre] = useState<Genre>();
 
-  const getMovies = useCallback(() => {
+  const getMovies = useCallback((pageNumber: number) => {
     const params = {
       genreId: genre?.id,
+      params: {
+        page: pageNumber,
+        size: 3,
+      }
     };
     setIsLoading(true);
     makePrivateRequest({ url: '/movies', params })
@@ -24,7 +29,7 @@ const Catalog = () => {
   }, [genre]);
 
   useEffect(() => {
-    getMovies();
+    getMovies(0);
   }, [getMovies]);
 
   return (
@@ -41,6 +46,13 @@ const Catalog = () => {
             </div>
           ))
         )}
+      </div>
+      <div className="row">
+        <Pagination
+          pageCount={page ? page.totalPages : 0}
+          range={3}
+          onChanges={getMovies}
+        />
       </div>
     </div>
   );
