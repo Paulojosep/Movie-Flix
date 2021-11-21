@@ -7,21 +7,16 @@ type Props = {
 };
 
 const MovieDetailsComment = ({ autorReview, commentReview }: Props) => {
-
   return (
-    <div className="container">
-      <div className="container-form-list-reaviews">
-        <div className="description-review">
-          <h4 className="username-review">
-            <Star />
-            {autorReview}
-          </h4>
-          <div className="description-review">
-            <span>{commentReview}</span>
-          </div>
-        </div>
+    <div className="container-form-list-reaviews">
+      <h4 className="username-review">
+        <Star />
+        {autorReview}
+      </h4>
+      <div className="description-review">
+        <span>{commentReview}</span>
       </div>
-      </div>
+    </div>
   );
 };
 
