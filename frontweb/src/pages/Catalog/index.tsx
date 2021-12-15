@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import MovieCard from '../../components/MovieCard';
+import Pagination from '../../components/Pagination';
 import { Genre } from '../../types/Genre';
 import { Movie } from '../../types/Movie';
 import { SpringPage } from '../../types/vendor/spring';
@@ -13,9 +14,13 @@ const Catalog = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [genre] = useState<Genre>();
 
-  const getMovies = useCallback(() => {
+  const getMovies = useCallback((pageNumber: number) => {
     const params = {
       genreId: genre?.id,
+      params: {
+        page: pageNumber,
+        size: 3,
+      }
     };
     setIsLoading(true);
     makePrivateRequest({ url: '/movies', params })
@@ -24,27 +29,30 @@ const Catalog = () => {
   }, [genre]);
 
   useEffect(() => {
-    getMovies();
+    getMovies(0);
   }, [getMovies]);
 
   return (
-    <div className="container my-4 catalog-container">
-      <div className="row catalog-title-container">
-        <h1>Tela listagem de filmes</h1>
-      </div>
-
-      <div className="row catalog-movies">
+    <div className="catalog-container">
+      <div className="row">
         {isLoading ? (
           <MovieCardLoader />
         ) : (
           page?.content.map((movie) => (
-            <div className="col ">
-              <Link to={`/movies/${movie.id}`} key={movie.id}>
+            <div className="col-sm-6 col-lg-4 col-xl-3" key={movie.id}>
+              <Link to={`/movies/${movie.id}`}>
                 <MovieCard movie={movie} />
               </Link>
             </div>
           ))
         )}
+      </div>
+      <div className="row">
+        <Pagination
+          pageCount={page ? page.totalPages : 0}
+          range={3}
+          onChanges={getMovies}
+        />
       </div>
     </div>
   );

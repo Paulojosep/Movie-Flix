@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router';
-import { makePrivateRequest } from '../../../../util/request';
+import { makePrivateRequest, requestBackend } from '../../../../util/request';
 import { toast } from 'react-toastify';
 import './styles.css';
 
@@ -15,6 +15,7 @@ type FormState = {
 
 const MovieDetailsReviews = ({ id }: ParamsType) => {
   const {
+    register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormState>();
@@ -25,7 +26,7 @@ const MovieDetailsReviews = ({ id }: ParamsType) => {
     makePrivateRequest({ url: '/reviews', method: 'POST', data })
       .then((response) => {
         toast.info('Obrigado pela sua Avaliação');
-        history.go(0)
+        history.push('/movies')
       })
       .catch(() => {
         toast.error('Houve um erro de validação do seu comentário');
@@ -39,13 +40,13 @@ const MovieDetailsReviews = ({ id }: ParamsType) => {
         {errors.text && (
           <div className="comment-alert">A Avaliação deve ser preenchida!</div>
         )}
-        <textarea
+        <input
+        {...register('text')}
+          type='text'
           name="text"
           placeholder="Deixe sua avaliação aqui"
-          className="input-review"
-          cols={2}
-          rows={10}
-        ></textarea>
+          className="base-input input-review"
+        />
         <button className="btn-save-review">SALVAR AVALIAÇÃO</button>
       </form>
     </div>
