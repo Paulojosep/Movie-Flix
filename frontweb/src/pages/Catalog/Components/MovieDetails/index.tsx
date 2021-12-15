@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { Link } from 'react-router-dom';
 import { Movie } from '../../../../types/Movie';
 import { hasAnyRoles } from '../../../../util/auth';
 import { makePrivateRequest } from '../../../../util/request';

@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router';
-import { makePrivateRequest, requestBackend } from '../../../../util/request';
+import { makePrivateRequest } from '../../../../util/request';
 import { toast } from 'react-toastify';
 import './styles.css';
 
